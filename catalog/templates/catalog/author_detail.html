@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Author: {{ author.last_name }}, {{ author.first_name }}</h1>
+
+  {% comment %} <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p>
+  <!-- author detail link not yet defined -->
+  <p><strong>Summary:</strong> {{ book.summary }}</p>
+  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+  <p><strong>Language:</strong> {{ book.language }}</p>
+  <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p> {% endcomment %}
+  <p>{{author.date_of_birth}}-{{author.date_of_death}}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Books</h4>
+
+    {% for copy in author.book_set.all %}
+      <a href="{{ copy.get_absolute_url }}">{{ copy.title }}</a>
+      <p>{{copy.summary}}</p>
+    {% endfor %}
+  </div>
+{% endblock %}
