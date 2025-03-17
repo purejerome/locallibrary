@@ -39,6 +39,10 @@
             {% if user.is_authenticated and "Librarian" in user.groups.all|join:", " %}
               <li>Staff</li>
               <li><a href="{% url 'all-borrowed' %}">All Borrowed</a></li>
+              {% if perms.catalog.add_author %}
+                <li><a href="{% url 'author-create' %}">Create author</a></li>
+                <li><a href="{% url 'book-create' %}">Create book</a></li>
+              {% endif %}
             {% endif %}
           {% endblock %}
         </div>
